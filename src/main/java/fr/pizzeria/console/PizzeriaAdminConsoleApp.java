@@ -1,4 +1,4 @@
-package pizza;
+package fr.pizzeria.console;
 
 import java.util.Scanner;
 
