@@ -1,9 +1,11 @@
 /**
  * 
  */
-package fr.pizzeria.model;
+package fr.pizzeria.dao;
 
 import java.util.List;
+
+import fr.pizzeria.model.Pizza;
 
 /**
  * Interface de DAO des pizzas

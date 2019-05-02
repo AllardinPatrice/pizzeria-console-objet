@@ -1,10 +1,12 @@
 /**
  * 
  */
-package fr.pizzeria.model;
+package fr.pizzeria.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.pizzeria.model.Pizza;
 
 /**
  * Classe de DAO pour les pizzas
@@ -82,15 +84,11 @@ public class PizzaMemDao implements IPizzaDao {
 	@Override
 	public boolean pizzaExists(String codePizza) {
 		// Recherche si la pizza existe
-		Integer indexCodeAModifier = Integer.MIN_VALUE;
-		for (int i = 0; i < alpizza.size(); i++) {
-			if (alpizza.get(i).getCode().equals(codePizza)) {
-				indexCodeAModifier = i;
-			}
-		}
-		if (indexCodeAModifier != Integer.MIN_VALUE)
+		if (findPizzaByCode(codePizza) != null) {
 			return true;
-		return false;
+		} else {
+			return false;
+		}
 	}
 
 	/**
