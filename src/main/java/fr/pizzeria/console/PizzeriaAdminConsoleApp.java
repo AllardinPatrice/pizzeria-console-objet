@@ -2,6 +2,7 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
 import fr.pizzeria.service.AjouterPizzaService;
 import fr.pizzeria.service.ListerPizzasService;
@@ -20,7 +21,7 @@ public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) {
 		// Création de la DAO pour la gestion des pizzas
-		PizzaMemDao pmd = new PizzaMemDao();
+		IPizzaDao pmd = new PizzaMemDao();
 
 		// Valeur de scanner de clavier
 		String valeur = "";
