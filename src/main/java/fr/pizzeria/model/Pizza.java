@@ -52,7 +52,7 @@ public class Pizza {
 	}
 
 	/**
-	 * Getter
+	 * Getter de l'Id de pizza
 	 * 
 	 * @return the id
 	 */
@@ -61,7 +61,7 @@ public class Pizza {
 	}
 
 	/**
-	 * Setter
+	 * Setter de l'Id de pizza
 	 * 
 	 * @param id
 	 *            the id to set
@@ -71,7 +71,7 @@ public class Pizza {
 	}
 
 	/**
-	 * Getter
+	 * Getter de code de pizza
 	 * 
 	 * @return the code
 	 */
@@ -80,7 +80,7 @@ public class Pizza {
 	}
 
 	/**
-	 * Setter
+	 * Setter de code de pizza
 	 * 
 	 * @param code
 	 *            the code to set
@@ -90,7 +90,7 @@ public class Pizza {
 	}
 
 	/**
-	 * Getter
+	 * Getter de libellé de pizza
 	 * 
 	 * @return the libelle
 	 */
@@ -99,7 +99,7 @@ public class Pizza {
 	}
 
 	/**
-	 * Setter
+	 * Setter de libellé de pizza
 	 * 
 	 * @param libelle
 	 *            the libelle to set
@@ -109,7 +109,7 @@ public class Pizza {
 	}
 
 	/**
-	 * Getter
+	 * Getter de prix de pizza
 	 * 
 	 * @return the prix
 	 */
@@ -118,7 +118,7 @@ public class Pizza {
 	}
 
 	/**
-	 * Setter
+	 * Setter de prix de pizza
 	 * 
 	 * @param prix
 	 *            the prix to set
