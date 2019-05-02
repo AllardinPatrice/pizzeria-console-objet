@@ -18,11 +18,13 @@ public class PizzaMemDao implements IPizzaDao {
 
 	@Override
 	public List<Pizza> findAllPizzas() {
+		// Récupération de l'ensemble des pizzas
 		return alpizza;
 	}
 
 	@Override
 	public void saveNewPizza(Pizza pizza) {
+		// Enregistrement de nouvelle pizza
 		alpizza.add(pizza);
 
 	}
@@ -47,15 +49,11 @@ public class PizzaMemDao implements IPizzaDao {
 
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
-
-		for (int i = 0; i < alpizza.size(); i++) {
-			if (codePizza.equals(alpizza.get(i).getCode())) {
-				alpizza.get(i).setCode(pizza.getCode());
-				alpizza.get(i).setLibelle(pizza.getLibelle());
-				alpizza.get(i).setPrix(pizza.getPrix());
-				break;
-			}
-		}
+		// Mise à jour des infos de pizza
+		Pizza pizzaTmp = findPizzaByCode(codePizza);
+		pizzaTmp.setCode(pizza.getCode());
+		pizzaTmp.setLibelle(pizza.getLibelle());
+		pizzaTmp.setPrix(pizza.getPrix());
 	}
 
 	@Override
@@ -83,6 +81,7 @@ public class PizzaMemDao implements IPizzaDao {
 
 	@Override
 	public boolean pizzaExists(String codePizza) {
+		// Recherche si la pizza existe
 		Integer indexCodeAModifier = Integer.MIN_VALUE;
 		for (int i = 0; i < alpizza.size(); i++) {
 			if (alpizza.get(i).getCode().equals(codePizza)) {
