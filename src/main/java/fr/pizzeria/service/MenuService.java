@@ -13,7 +13,7 @@ import fr.pizzeria.dao.IPizzaDao;
  */
 public abstract class MenuService {
 	/**
-	 * Exécution de la couche de service
+	 * Exécution de la couche de service (UC pour Use Case)
 	 * 
 	 * @param scanner
 	 *            (scanner de clavier)
