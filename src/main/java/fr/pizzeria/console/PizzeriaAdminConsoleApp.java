@@ -54,8 +54,7 @@ public class PizzeriaAdminConsoleApp {
 				 * Affichage des pizzas
 				 */
 				for (int i = 0; i < alpizza.size(); i++) {
-					System.out.println(alpizza.get(i).getCode() + " -> " + alpizza.get(i).getLibelle() + " ("
-							+ alpizza.get(i).getPrix() + " €)");
+					System.out.println(alpizza.get(i).toString());
 				}
 			} else if (valeur.equals("2")) {
 				System.out.println("Ajout d'une nouvelle pizza");
@@ -84,8 +83,7 @@ public class PizzeriaAdminConsoleApp {
 				 * Affichage des pizzas
 				 */
 				for (int i = 0; i < alpizza.size(); i++) {
-					System.out.println(alpizza.get(i).getCode() + " -> " + alpizza.get(i).getLibelle() + " ("
-							+ alpizza.get(i).getPrix() + " €)");
+					System.out.println(alpizza.get(i).toString());
 				}
 				/*
 				 * Demande de l'ancien code
@@ -126,8 +124,7 @@ public class PizzeriaAdminConsoleApp {
 				 * Affichage des pizzas
 				 */
 				for (int i = 0; i < alpizza.size(); i++) {
-					System.out.println(alpizza.get(i).getCode() + " -> " + alpizza.get(i).getLibelle() + " ("
-							+ alpizza.get(i).getPrix() + " €)");
+					System.out.println(alpizza.get(i).toString());
 				}
 				/*
 				 * Demande du code de la pizza à supprimer

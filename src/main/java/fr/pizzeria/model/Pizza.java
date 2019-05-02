@@ -126,4 +126,48 @@ public class Pizza {
 	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
+
+	/**
+	 * Redéfinition de la méthode toString pour les pizzas
+	 */
+	@Override
+	public String toString() {
+		return code + "-> " + libelle + " (" + prix + " €)";
+	}
+
+	/**
+	 * Redéfinition de la méthode equals pour la pizza
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pizza other = (Pizza) obj;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (libelle == null) {
+			if (other.libelle != null)
+				return false;
+		} else if (!libelle.equals(other.libelle))
+			return false;
+		if (prix == null) {
+			if (other.prix != null)
+				return false;
+		} else if (!prix.equals(other.prix))
+			return false;
+		return true;
+	}
+
 }
