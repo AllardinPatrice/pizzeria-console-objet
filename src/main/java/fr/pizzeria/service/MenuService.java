@@ -2,6 +2,8 @@ package fr.pizzeria.service;
 
 import java.util.Scanner;
 
+import fr.pizzeria.dao.PizzaMemDao;
+
 /**
  * Classe de couche de service pour la pizzeria
  * 
@@ -9,5 +11,14 @@ import java.util.Scanner;
  *
  */
 public abstract class MenuService {
-	public abstract void executeUC(Scanner scanner);
+	/**
+	 * Exécution de la couche de service
+	 * 
+	 * @param scanner
+	 *            (scanner de clavier)
+	 * @param pmd
+	 *            (DAO)
+	 */
+	public abstract void executeUC(Scanner scanner, PizzaMemDao pmd);
+
 }
