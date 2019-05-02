@@ -1,9 +1,9 @@
 package fr.pizzeria.console;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.model.PizzaMemDao;
 
 /**
  * Programme de gestion centrale de la pizzeria
@@ -15,21 +15,8 @@ public class PizzeriaAdminConsoleApp {
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		/*
-		 * Création de la liste des pizzas
-		 */
-		ArrayList<Pizza> alpizza = new ArrayList<>();
-		/*
-		 * Remplissage de la liste des pizzas
-		 */
-		alpizza.add(new Pizza(0, "PEP", "Pépéroni", 12.5));
-		alpizza.add(new Pizza(0, "MAR", "Margherita", 14.0));
-		alpizza.add(new Pizza(0, "REIN", "La Reine", 11.5));
-		alpizza.add(new Pizza(0, "FRO", "La 4 fromages", 12.0));
-		alpizza.add(new Pizza(0, "CAN", "La cannibale", 12.5));
-		alpizza.add(new Pizza(0, "SAV", "La savoyarde", 13.0));
-		alpizza.add(new Pizza(0, "ORI", "L’orientale", 13.5));
-		alpizza.add(new Pizza(0, "IND", "L’indienne", 14.0));
+		// Création de la DAO pour la gestion des pizzas
+		PizzaMemDao pmd = new PizzaMemDao();
 
 		/*
 		 * Menu de la pizzeria
@@ -53,9 +40,10 @@ public class PizzeriaAdminConsoleApp {
 				/*
 				 * Affichage des pizzas
 				 */
-				for (int i = 0; i < alpizza.size(); i++) {
-					System.out.println(alpizza.get(i).toString());
+				for (int i = 0; i < pmd.findAllPizzas().size(); i++) {
+					System.out.println(pmd.findAllPizzas().get(i).toString());
 				}
+
 			} else if (valeur.equals("2")) {
 				System.out.println("Ajout d'une nouvelle pizza");
 				/*
@@ -75,16 +63,17 @@ public class PizzeriaAdminConsoleApp {
 				/*
 				 * Ajout de la pizza à la liste
 				 */
-				alpizza.add(new Pizza(valeurCode, valeurNom, valeurPrixDouble));
+				pmd.saveNewPizza(new Pizza(valeurCode, valeurNom, valeurPrixDouble));
 			} else if (valeur.equals("3")) {
 				System.out.println("Mise à jour d'une pizza");
 				System.out.println("Liste des pizzas");
 				/*
 				 * Affichage des pizzas
 				 */
-				for (int i = 0; i < alpizza.size(); i++) {
-					System.out.println(alpizza.get(i).toString());
+				for (int i = 0; i < pmd.findAllPizzas().size(); i++) {
+					System.out.println(pmd.findAllPizzas().get(i).toString());
 				}
+
 				/*
 				 * Demande de l'ancien code
 				 */
@@ -95,14 +84,8 @@ public class PizzeriaAdminConsoleApp {
 				/*
 				 * Recherche de l'élement à modifier
 				 */
-				Integer indexCodeAModifier = Integer.MIN_VALUE;
-				for (int i = 0; i < alpizza.size(); i++) {
-					if (alpizza.get(i).getCode().equals(valeurCodeAncien)) {
-						indexCodeAModifier = i;
-					}
-				}
-				// Si la valeur est trouvée
-				if (indexCodeAModifier != Integer.MIN_VALUE) {
+				// Si la pizza est trouvée
+				if (pmd.pizzaExists(valeurCodeAncien)) {
 					// Demande des valeurs pour modification de code, nom et
 					// prix
 					System.out.println("Veuillez saisir le nouveau code : ");
@@ -111,11 +94,10 @@ public class PizzeriaAdminConsoleApp {
 					valeurNomNouveau = scanner.nextLine();
 					System.out.println("Veuillez saisir le nouveau prix :");
 					valeurPrixNouveau = scanner.nextLine();
+					Double valeurPrixNouveauDouble = Double.parseDouble(valeurPrixNouveau);
 					// Modification des valeurs
-					alpizza.get(indexCodeAModifier).setCode(valeurCodeNouveau);
-					alpizza.get(indexCodeAModifier).setLibelle(valeurNomNouveau);
-					Double valeurNouveauPrixDouble = Double.parseDouble(valeurPrixNouveau);
-					alpizza.get(indexCodeAModifier).setPrix(valeurNouveauPrixDouble);
+					pmd.updatePizza(valeurCodeAncien,
+							new Pizza(valeurCodeNouveau, valeurNomNouveau, valeurPrixNouveauDouble));
 				}
 			} else if (valeur.equals("4")) {
 				System.out.println("Suppression d'une pizza");
@@ -123,8 +105,8 @@ public class PizzeriaAdminConsoleApp {
 				/*
 				 * Affichage des pizzas
 				 */
-				for (int i = 0; i < alpizza.size(); i++) {
-					System.out.println(alpizza.get(i).toString());
+				for (int i = 0; i < pmd.findAllPizzas().size(); i++) {
+					System.out.println(pmd.findAllPizzas().get(i).toString());
 				}
 				/*
 				 * Demande du code de la pizza à supprimer
@@ -135,18 +117,8 @@ public class PizzeriaAdminConsoleApp {
 				/*
 				 * Recherche de l'élement à supprimer
 				 */
-				int indexCodeASupprimer = Integer.MIN_VALUE;
-				for (int i = 0; i < alpizza.size(); i++) {
-					if (alpizza.get(i).getCode().equals(valeurCodeSuppression)) {
-						indexCodeASupprimer = i;
-					}
-				}
-				// Si le code est trouvé
-				if (indexCodeASupprimer != Integer.MIN_VALUE) {
-					System.out.println("Suppression de la pizza : Code : " + alpizza.get(indexCodeASupprimer).getCode()
-							+ " index : " + indexCodeASupprimer);
-					alpizza.remove(indexCodeASupprimer);
-				}
+				// Suppression de la pizza
+				pmd.deletePizza(valeurCodeSuppression);
 
 			} else if (valeur.equals("99")) {
 				System.out.println("Au revoir ☹");
