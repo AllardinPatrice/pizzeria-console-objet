@@ -5,7 +5,8 @@ import java.util.Scanner;
 import fr.pizzeria.dao.PizzaMemDao;
 
 /**
- * Classe de couche de service pour la pizzeria
+ * Classe de couche de service pour la pizzeria. Pour gérer l'affichage, ajout,
+ * la modification et la suppression des pizzas
  * 
  * @author Patrice
  *
