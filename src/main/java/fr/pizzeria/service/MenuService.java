@@ -2,7 +2,7 @@ package fr.pizzeria.service;
 
 import java.util.Scanner;
 
-import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.dao.IPizzaDao;
 
 /**
  * Classe de couche de service pour la pizzeria. Pour gérer l'affichage, ajout,
@@ -20,6 +20,6 @@ public abstract class MenuService {
 	 * @param pmd
 	 *            (DAO)
 	 */
-	public abstract void executeUC(Scanner scanner, PizzaMemDao pmd);
+	public abstract void executeUC(Scanner scanner, IPizzaDao pmd);
 
 }
