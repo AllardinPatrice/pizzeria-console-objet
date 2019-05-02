@@ -7,7 +7,7 @@ package fr.pizzeria.model;
  *
  */
 public class Pizza {
-	private Integer id;
+	private Integer id = 0;
 	private String code;
 	private String libelle;
 	private Double prix;
@@ -45,7 +45,9 @@ public class Pizza {
 	 *            prix de la pizza
 	 */
 	public Pizza(Integer id, String code, String libelle, Double prix) {
-		this(code, libelle, prix);
+		this.code = code;
+		this.libelle = libelle;
+		this.prix = prix;
 		this.id = id;
 	}
 
