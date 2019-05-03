@@ -6,6 +6,7 @@ package fr.pizzeria.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -39,14 +40,14 @@ public class PizzaMemDao implements IPizzaDao {
 		// Création de la liste des pizzas
 		this.alpizza = new ArrayList<>();
 		// Ajout des pizzas par défaut
-		alpizza.add(new Pizza(0, "PEP", "Pépéroni", 12.5));
-		alpizza.add(new Pizza(0, "MAR", "Margherita", 14.0));
-		alpizza.add(new Pizza(0, "REIN", "La Reine", 11.5));
-		alpizza.add(new Pizza(0, "FRO", "La 4 fromages", 12.0));
-		alpizza.add(new Pizza(0, "CAN", "La cannibale", 12.5));
-		alpizza.add(new Pizza(0, "SAV", "La savoyarde", 13.0));
-		alpizza.add(new Pizza(0, "ORI", "L’orientale", 13.5));
-		alpizza.add(new Pizza(0, "IND", "L’indienne", 14.0));
+		alpizza.add(new Pizza(0, "PEP", "Pépéroni", 12.5, CategoriePizza.VIANDE));
+		alpizza.add(new Pizza(0, "MAR", "Margherita", 14.0, CategoriePizza.SANS_VIANDE));
+		alpizza.add(new Pizza(0, "REIN", "La Reine", 11.5, CategoriePizza.VIANDE));
+		alpizza.add(new Pizza(0, "FRO", "La 4 fromages", 12.0, CategoriePizza.POISSON));
+		alpizza.add(new Pizza(0, "CAN", "La cannibale", 12.5, CategoriePizza.VIANDE));
+		alpizza.add(new Pizza(0, "SAV", "La savoyarde", 13.0, CategoriePizza.POISSON));
+		alpizza.add(new Pizza(0, "ORI", "L’orientale", 13.5, CategoriePizza.SANS_VIANDE));
+		alpizza.add(new Pizza(0, "IND", "L’indienne", 14.0, CategoriePizza.POISSON));
 	}
 
 	@Override

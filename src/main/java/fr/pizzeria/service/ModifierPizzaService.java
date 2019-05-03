@@ -3,6 +3,7 @@ package fr.pizzeria.service;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class ModifierPizzaService extends MenuService {
@@ -22,7 +23,8 @@ public class ModifierPizzaService extends MenuService {
 		 * Demande de l'ancien code
 		 */
 		System.out.println("Veuillez choisir le code de la pizza à modifier.");
-		String valeurCodeAncien = null, valeurCodeNouveau = null, valeurNomNouveau = null, valeurPrixNouveau = null;
+		String valeurCodeAncien = null, valeurCodeNouveau = null, valeurNomNouveau = null, valeurPrixNouveau = null,
+				valeurCategoriePizza;
 		valeurCodeAncien = scanner.nextLine();
 		/*
 		 * Recherche de l'élement à modifier
@@ -37,9 +39,14 @@ public class ModifierPizzaService extends MenuService {
 			valeurNomNouveau = scanner.nextLine();
 			System.out.println("Veuillez saisir le nouveau prix :");
 			valeurPrixNouveau = scanner.nextLine();
+			System.out.println("Veuillez saisir la catégorie de pizza :");
+			valeurCategoriePizza = scanner.nextLine();
+			CategoriePizza catPizza = CategoriePizza.getValeurCategorie(valeurCategoriePizza);
+			// Conversion en double
 			Double valeurPrixNouveauDouble = Double.parseDouble(valeurPrixNouveau);
 			// Modification des valeurs
-			pmd.updatePizza(valeurCodeAncien, new Pizza(valeurCodeNouveau, valeurNomNouveau, valeurPrixNouveauDouble));
+			pmd.updatePizza(valeurCodeAncien,
+					new Pizza(valeurCodeNouveau, valeurNomNouveau, valeurPrixNouveauDouble, catPizza));
 		}
 
 	}

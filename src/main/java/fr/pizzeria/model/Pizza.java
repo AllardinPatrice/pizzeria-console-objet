@@ -11,6 +11,7 @@ public class Pizza {
 	private String code;
 	private String libelle;
 	private Double prix;
+	private CategoriePizza enumCategorie;
 
 	/**
 	 * Constructeur d'une pizza
@@ -21,11 +22,14 @@ public class Pizza {
 	 *            libellé de la pizza
 	 * @param prix
 	 *            prix de la pizza
+	 * @param enumCategorie
+	 *            enum de catégorie de pizza
 	 */
-	public Pizza(String code, String libelle, Double prix) {
+	public Pizza(String code, String libelle, Double prix, CategoriePizza enumCategorie) {
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
+		this.enumCategorie = enumCategorie;
 		/**
 		 * Incrémentation de l'id de la pizza
 		 */
@@ -43,12 +47,15 @@ public class Pizza {
 	 *            libellé de la pizza
 	 * @param prix
 	 *            prix de la pizza
+	 * @param enumCategorie
+	 *            enum de catégorie de pizza
 	 */
-	public Pizza(Integer id, String code, String libelle, Double prix) {
+	public Pizza(Integer id, String code, String libelle, Double prix, CategoriePizza enumCategorie) {
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
 		this.id = id;
+		this.enumCategorie = enumCategorie;
 	}
 
 	/**
@@ -132,7 +139,7 @@ public class Pizza {
 	 */
 	@Override
 	public String toString() {
-		return code + "-> " + libelle + " (" + prix + " €)";
+		return code + "-> " + libelle + " (" + prix + " €) Cat. : " + enumCategorie.getChaineCategoriePizza();
 	}
 
 	/**
@@ -168,6 +175,25 @@ public class Pizza {
 		} else if (!prix.equals(other.prix))
 			return false;
 		return true;
+	}
+
+	/**
+	 * Getter de l'énumération
+	 * 
+	 * @return the enumCategorie
+	 */
+	public CategoriePizza getEnumCategorie() {
+		return enumCategorie;
+	}
+
+	/**
+	 * Setter de l'énumération
+	 * 
+	 * @param enumCategorie
+	 *            the enumCategorie to set
+	 */
+	public void setEnumCategorie(CategoriePizza enumCategorie) {
+		this.enumCategorie = enumCategorie;
 	}
 
 }
