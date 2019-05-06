@@ -2,14 +2,22 @@ package fr.pizzeria.service;
 
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class AjouterPizzaService extends MenuService {
+	/**
+	 * Création d'un logger
+	 */
+	private static final Logger LOG = LoggerFactory.getLogger(AjouterPizzaService.class);
 
 	@Override
 	public void executeUC(Scanner scanner, IPizzaDao pmd) {
+		LOG.info("Ajout d'une nouvelle pizza");
 		System.out.println("Ajout d'une nouvelle pizza");
 		/*
 		 * Demande des 4 infos pour ajouter une pizza
@@ -33,6 +41,8 @@ public class AjouterPizzaService extends MenuService {
 		 * Ajout de la pizza à la liste
 		 */
 		pmd.saveNewPizza(new Pizza(valeurCode, valeurNom, valeurPrixDouble, catPizza));
+		LOG.info(
+				"Code : " + valeurCode + " Nom : " + valeurNom + " Prix : " + valeurPrixDouble + " Cat. : " + catPizza);
 
 	}
 

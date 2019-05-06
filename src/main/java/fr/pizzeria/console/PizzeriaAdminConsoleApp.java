@@ -2,6 +2,9 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
 import fr.pizzeria.service.AjouterPizzaService;
@@ -16,6 +19,9 @@ import fr.pizzeria.service.SupprimerPizzaService;
  *
  */
 public class PizzeriaAdminConsoleApp {
+	// Création du logger
+	private static final Logger LOG = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
+
 	// Déclaration du scanner
 	public static Scanner scanner = new Scanner(System.in);
 
@@ -28,6 +34,7 @@ public class PizzeriaAdminConsoleApp {
 		// Tant que l'on n'a pas demandé de sortir
 		while (!valeur.equals("99")) {
 			// Menu de la pizzeria
+			LOG.info("Affichage du menu de la pizzeria");
 			System.out.println("***** Pizzeria Administration *****");
 			System.out.println("1. Lister les pizzas");
 			System.out.println("2. Ajouter une nouvelle pizza");

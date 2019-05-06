@@ -6,6 +6,9 @@ package fr.pizzeria.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -16,6 +19,11 @@ import fr.pizzeria.model.Pizza;
  *
  */
 public class PizzaMemDao implements IPizzaDao {
+	/**
+	 * Création d'un logger de débug
+	 */
+	private static final Logger LOG = LoggerFactory.getLogger(PizzaMemDao.class);
+
 	// Création de la liste des pizzas
 	private ArrayList<Pizza> alpizza;
 
@@ -28,6 +36,7 @@ public class PizzaMemDao implements IPizzaDao {
 	@Override
 	public void saveNewPizza(Pizza pizza) {
 		// Enregistrement de nouvelle pizza
+		LOG.debug("Ajout d'une nouvelle pizza");
 		alpizza.add(pizza);
 
 	}
@@ -40,6 +49,7 @@ public class PizzaMemDao implements IPizzaDao {
 		// Création de la liste des pizzas
 		this.alpizza = new ArrayList<>();
 		// Ajout des pizzas par défaut
+		LOG.debug("Ajout d'une liste de nouvelles pizzas par défaut");
 		alpizza.add(new Pizza(0, "PEP", "Pépéroni", 12.5, CategoriePizza.VIANDE));
 		alpizza.add(new Pizza(0, "MAR", "Margherita", 14.0, CategoriePizza.SANS_VIANDE));
 		alpizza.add(new Pizza(0, "REIN", "La Reine", 11.5, CategoriePizza.VIANDE));
@@ -53,6 +63,7 @@ public class PizzaMemDao implements IPizzaDao {
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
 		// Mise à jour des infos de pizza
+		LOG.debug("Mise à jour de pizza");
 		Pizza pizzaTmp = findPizzaByCode(codePizza);
 		pizzaTmp.setCode(pizza.getCode());
 		pizzaTmp.setLibelle(pizza.getLibelle());
@@ -67,6 +78,7 @@ public class PizzaMemDao implements IPizzaDao {
 		if (pizzaExists(codePizza)) {
 			// Si le code est trouvé
 			//
+			LOG.debug("Suppression de pizza");
 			alpizza.remove(findPizzaByCode(codePizza));
 		}
 	}

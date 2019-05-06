@@ -2,12 +2,20 @@ package fr.pizzeria.service;
 
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.dao.IPizzaDao;
 
 public class SupprimerPizzaService extends MenuService {
+	/**
+	 * Création d'un logger
+	 */
+	private static final Logger LOG = LoggerFactory.getLogger(SupprimerPizzaService.class);
 
 	@Override
 	public void executeUC(Scanner scanner, IPizzaDao pmd) {
+		LOG.info("Suppression de pizza : ");
 		System.out.println("Suppression d'une pizza");
 		System.out.println("Liste des pizzas");
 		/*
@@ -27,6 +35,7 @@ public class SupprimerPizzaService extends MenuService {
 		 */
 		// Suppression de la pizza
 		pmd.deletePizza(valeurCodeSuppression);
+		LOG.info("Code de suppression : " + valeurCodeSuppression);
 
 	}
 
