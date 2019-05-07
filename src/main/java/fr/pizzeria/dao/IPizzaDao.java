@@ -26,8 +26,10 @@ public interface IPizzaDao {
 	 * 
 	 * @param une
 	 *            pizza
+	 * @return vrai si non null
+	 * 
 	 */
-	void saveNewPizza(Pizza pizza);
+	boolean saveNewPizza(Pizza pizza);
 
 	/**
 	 * Met à jour une pizza en DAO
@@ -37,7 +39,7 @@ public interface IPizzaDao {
 	 * @param une
 	 *            pizza
 	 */
-	void updatePizza(String codePizza, Pizza pizza);
+	boolean updatePizza(String codePizza, Pizza pizza);
 
 	/**
 	 * Suppression de pizza en DAO

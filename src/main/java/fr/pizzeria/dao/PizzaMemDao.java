@@ -34,10 +34,15 @@ public class PizzaMemDao implements IPizzaDao {
 	}
 
 	@Override
-	public void saveNewPizza(Pizza pizza) {
+	public boolean saveNewPizza(Pizza pizza) {
 		// Enregistrement de nouvelle pizza
-		LOG.debug("Ajout d'une nouvelle pizza");
-		alpizza.add(pizza);
+		// Si la pizza n'est pas nulle
+		if (pizza != null) {
+			LOG.debug("Ajout d'une nouvelle pizza");
+			alpizza.add(pizza);
+			return true;
+		} else
+			return false;
 
 	}
 
@@ -51,23 +56,27 @@ public class PizzaMemDao implements IPizzaDao {
 		// Ajout des pizzas par défaut
 		LOG.debug("Ajout d'une liste de nouvelles pizzas par défaut");
 		alpizza.add(new Pizza(0, "PEP", "Pépéroni", 12.5, CategoriePizza.VIANDE));
-		alpizza.add(new Pizza(0, "MAR", "Margherita", 14.0, CategoriePizza.SANS_VIANDE));
-		alpizza.add(new Pizza(0, "REIN", "La Reine", 11.5, CategoriePizza.VIANDE));
-		alpizza.add(new Pizza(0, "FRO", "La 4 fromages", 12.0, CategoriePizza.POISSON));
-		alpizza.add(new Pizza(0, "CAN", "La cannibale", 12.5, CategoriePizza.VIANDE));
-		alpizza.add(new Pizza(0, "SAV", "La savoyarde", 13.0, CategoriePizza.POISSON));
-		alpizza.add(new Pizza(0, "ORI", "L’orientale", 13.5, CategoriePizza.SANS_VIANDE));
-		alpizza.add(new Pizza(0, "IND", "L’indienne", 14.0, CategoriePizza.POISSON));
+		alpizza.add(new Pizza(1, "MAR", "Margherita", 14.0, CategoriePizza.SANS_VIANDE));
+		alpizza.add(new Pizza(2, "REIN", "La Reine", 11.5, CategoriePizza.VIANDE));
+		alpizza.add(new Pizza(2, "FRO", "La 4 fromages", 12.0, CategoriePizza.POISSON));
+		alpizza.add(new Pizza(3, "CAN", "La cannibale", 12.5, CategoriePizza.VIANDE));
+		alpizza.add(new Pizza(4, "SAV", "La savoyarde", 13.0, CategoriePizza.POISSON));
+		alpizza.add(new Pizza(5, "ORI", "L’orientale", 13.5, CategoriePizza.SANS_VIANDE));
+		alpizza.add(new Pizza(6, "IND", "L’indienne", 14.0, CategoriePizza.POISSON));
 	}
 
 	@Override
-	public void updatePizza(String codePizza, Pizza pizza) {
+	public boolean updatePizza(String codePizza, Pizza pizza) {
 		// Mise à jour des infos de pizza
 		LOG.debug("Mise à jour de pizza");
-		Pizza pizzaTmp = findPizzaByCode(codePizza);
-		pizzaTmp.setCode(pizza.getCode());
-		pizzaTmp.setLibelle(pizza.getLibelle());
-		pizzaTmp.setPrix(pizza.getPrix());
+		if (pizza != null) {
+			Pizza pizzaTmp = findPizzaByCode(codePizza);
+			pizzaTmp.setCode(pizza.getCode());
+			pizzaTmp.setLibelle(pizza.getLibelle());
+			pizzaTmp.setPrix(pizza.getPrix());
+			return true;
+		} else
+			return false;
 	}
 
 	@Override
