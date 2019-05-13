@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.exception.DeletePizzaException;
+import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.service.AjouterPizzaService;
 import fr.pizzeria.service.ListerPizzasService;
 import fr.pizzeria.service.ModifierPizzaService;
@@ -53,16 +56,28 @@ public class PizzeriaAdminConsoleApp {
 			} else if (valeur.equals("2")) {
 				// Ajout de nouvelle pizza
 				AjouterPizzaService aps = new AjouterPizzaService();
-				aps.executeUC(scanner, pmd);
+				try {
+					aps.executeUC(scanner, pmd);
+				} catch (SavePizzaException e) {
+					System.out.println(e.getMessage());
+				}
 
 			} else if (valeur.equals("3")) {
 				// Modification de pizza existante
 				ModifierPizzaService mps = new ModifierPizzaService();
-				mps.executeUC(scanner, pmd);
+				try {
+					mps.executeUC(scanner, pmd);
+				} catch (UpdatePizzaException e) {
+					System.out.println(e.getMessage());
+				}
 			} else if (valeur.equals("4")) {
 				// Suppression de pizza
 				SupprimerPizzaService sps = new SupprimerPizzaService();
-				sps.executeUC(scanner, pmd);
+				try {
+					sps.executeUC(scanner, pmd);
+				} catch (DeletePizzaException e) {
+					System.out.println(e.getMessage());
+				}
 
 			} else if (valeur.equals("99")) {
 				// Sortie

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -16,7 +17,7 @@ public class AjouterPizzaService extends MenuService {
 	private static final Logger LOG = LoggerFactory.getLogger(AjouterPizzaService.class);
 
 	@Override
-	public void executeUC(Scanner scanner, IPizzaDao pmd) {
+	public void executeUC(Scanner scanner, IPizzaDao pmd) throws SavePizzaException {
 		LOG.info("Ajout d'une nouvelle pizza");
 		System.out.println("Ajout d'une nouvelle pizza");
 		/*
@@ -37,13 +38,28 @@ public class AjouterPizzaService extends MenuService {
 		 * Conversion en double
 		 */
 		Double valeurPrixDouble = Double.parseDouble(valeurPrix);
-		/*
-		 * Ajout de la pizza à la liste
-		 */
-		pmd.saveNewPizza(new Pizza(valeurCode, valeurNom, valeurPrixDouble, catPizza));
-		LOG.info(
-				"Code : " + valeurCode + " Nom : " + valeurNom + " Prix : " + valeurPrixDouble + " Cat. : " + catPizza);
 
+		// Gestion des exceptions
+		// Si le code est à blanc
+		if (valeurCode.equals("")) {
+			// Lancement d'exception
+			throw new SavePizzaException("Code incorrect");
+		} else if (valeurNom.equals("")) {
+			// Si le libellé est blanc
+			// Lancement d'exception
+			throw new SavePizzaException("Libellé incorrect");
+		} else if (valeurPrixDouble == 0.0) {
+			// Si le prix est à 0
+			// Lancement d'exception
+			throw new SavePizzaException("Prix à 0");
+		} else {
+			/*
+			 * Ajout de la pizza à la liste
+			 */
+			pmd.saveNewPizza(new Pizza(valeurCode, valeurNom, valeurPrixDouble, catPizza));
+			LOG.info("Code : " + valeurCode + " Nom : " + valeurNom + " Prix : " + valeurPrixDouble + " Cat. : "
+					+ catPizza);
+		}
 	}
 
 }

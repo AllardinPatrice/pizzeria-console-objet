@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.exception.DeletePizzaException;
 
 public class SupprimerPizzaService extends MenuService {
 	/**
@@ -14,7 +15,7 @@ public class SupprimerPizzaService extends MenuService {
 	private static final Logger LOG = LoggerFactory.getLogger(SupprimerPizzaService.class);
 
 	@Override
-	public void executeUC(Scanner scanner, IPizzaDao pmd) {
+	public void executeUC(Scanner scanner, IPizzaDao pmd) throws DeletePizzaException {
 		LOG.info("Suppression de pizza : ");
 		System.out.println("Suppression d'une pizza");
 		System.out.println("Liste des pizzas");
@@ -30,13 +31,17 @@ public class SupprimerPizzaService extends MenuService {
 		System.out.println("Veuillez choisir le code de la pizza à supprimer.");
 		String valeurCodeSuppression = null;
 		valeurCodeSuppression = scanner.nextLine();
-		/*
-		 * Recherche de l'élement à supprimer
-		 */
-		// Suppression de la pizza
-		pmd.deletePizza(valeurCodeSuppression);
-		LOG.info("Code de suppression : " + valeurCodeSuppression);
 
+		// Gestion des exceptions
+		if (valeurCodeSuppression.equals("")) {
+			// Si la valeur de code est vide
+			// Lancement de l'exception
+			throw new DeletePizzaException("Code incorrect");
+		} else {
+			// Suppression de la pizza
+			pmd.deletePizza(valeurCodeSuppression);
+			LOG.info("Code de suppression : " + valeurCodeSuppression);
+		}
 	}
 
 }

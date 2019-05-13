@@ -2,17 +2,25 @@ package fr.pizzeria.exception;
 
 /**
  * Gestion des exception du menu
+ * 
  * @author Patrice
  *
  */
 public class StockageException extends Exception {
 
+	/**
+	 * Constructeur
+	 */
 	public StockageException() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public StockageException(String arg0) {
-		super(arg0);
+	/**
+	 * Constrcteur avec message
+	 * 
+	 * @param message
+	 */
+	public StockageException(String message) {
+		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
