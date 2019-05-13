@@ -1,19 +1,14 @@
 package fr.pizzeria.exception;
 
 /**
- * Exception de suppression de pizza
-<<<<<<< HEAD
+ * Exception de suppression de pizza <<<<<<< HEAD
  * 
-=======
->>>>>>> 02dec94525be25fed4ec848a23edd840b260112a
+ * ======= >>>>>>> 02dec94525be25fed4ec848a23edd840b260112a
+ * 
  * @author Patrice
  *
  */
 public class DeletePizzaException extends StockageException {
-	
-	public DeletePizzaException () {
-		
-	}
 
 	/**
 	 * Consturcteur
