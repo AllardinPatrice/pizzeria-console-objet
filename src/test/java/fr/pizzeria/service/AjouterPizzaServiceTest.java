@@ -12,6 +12,7 @@ import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.exception.SavePizzaException;
 
 public class AjouterPizzaServiceTest {
 	/**
@@ -30,7 +31,12 @@ public class AjouterPizzaServiceTest {
 		// Création de service d'ajout de pizza
 		AjouterPizzaService aps = new AjouterPizzaService();
 		// Exécution de Use Case d'ajout
-		aps.executeUC(new Scanner(System.in), pmd);
+		try {
+			aps.executeUC(new Scanner(System.in), pmd);
+		} catch (SavePizzaException e) {
+			// Affichage du message
+			System.out.println(e.getMessage());
+		}
 		// Vérification que cela s'est bien passé en vérifiant que la pizza
 		// existe
 		assertTrue(pmd.pizzaExists("ARG"));
@@ -45,7 +51,12 @@ public class AjouterPizzaServiceTest {
 		// Création de service d'ajout de pizza
 		AjouterPizzaService aps = new AjouterPizzaService();
 		// Exécution de Use Case d'ajout
-		aps.executeUC(new Scanner(System.in), pmd);
+		try {
+			aps.executeUC(new Scanner(System.in), pmd);
+		} catch (SavePizzaException e) {
+			// Affichage du message
+			System.out.println(e.getMessage());
+		}
 		// Vérification que la pizza non réelle n'est pas ajoutée
 		assertFalse(pmd.pizzaExists("ARG"));
 	}
